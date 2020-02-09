@@ -167,8 +167,8 @@ class DozenalWatchView extends WatchUi.WatchFace
         // Draw the tick marks around the edges of the screen
         drawHashMarks(targetDc);
 
-        //Use white to draw the hour and minute hands
-        targetDc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        //Use red to draw the gross, dozens, and units hands
+        targetDc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
 
         // Draw the gross hand. Convert it to minutes and compute the angle.
         var grossHandAngle = DozenalTime.timeToGrossF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
@@ -183,7 +183,7 @@ class DozenalWatchView extends WatchUi.WatchFace
         targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, unitsHandAngle, 90, 0, 2));
 
         // Draw the arbor in the center of the screen.
-        targetDc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_BLACK);
+        targetDc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         targetDc.fillCircle(width / 2, height / 2, 7);
         targetDc.setColor(Graphics.COLOR_BLACK,Graphics.COLOR_BLACK);
         targetDc.drawCircle(width / 2, height / 2, 7);
@@ -218,7 +218,7 @@ class DozenalWatchView extends WatchUi.WatchFace
         dataString += DozenalTime.formatTime(clockTime);
         
         // Also draw the background process data if it is available.
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(width / 2, 5*height/8, font, dataString, Graphics.TEXT_JUSTIFY_CENTER);
 
         if( partialUpdatesAllowed ) {
@@ -235,7 +235,7 @@ class DozenalWatchView extends WatchUi.WatchFace
         var info = Gregorian.info(Time.now(), Time.FORMAT_LONG);
         var dateStr = Lang.format("$1$ $2$ $3$", [info.day_of_week, info.month, info.day]);
 
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
