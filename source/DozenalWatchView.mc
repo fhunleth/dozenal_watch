@@ -227,13 +227,6 @@ class DozenalWatchView extends WatchUi.WatchFace
             // If this device supports partial updates and they are currently
             // allowed run the onPartialUpdate method to draw the second hand.
             onPartialUpdate( dc );
-        } else if ( isAwake ) {
-            // Otherwise, if we are out of sleep mode, draw the second hand
-            // directly in the full update method.
-            dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-            secondHand = (clockTime.sec / 60.0) * Math.PI * 2;
-
-            dc.fillPolygon(generateHandCoordinates(screenCenterPoint, secondHand, 60, 20, 2));
         }
 
         fullScreenRefresh = false;
