@@ -19,7 +19,11 @@ module DozenalTime
     function timeToUnits(clockTime) {
     	return ((clockTime.min % 10) * 60 + clockTime.sec) / 50;
     }
-    
+
+    function timeToUnitsF(clockTime) {
+    	return ((clockTime.min % 10) * 60 + clockTime.sec) / 50.0;
+    }
+        
     function timeToEdo(clockTime) {
     	return (((clockTime.min % 10) *60 + clockTime.sec) % 50) * 12 / 50;
 	}

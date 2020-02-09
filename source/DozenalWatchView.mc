@@ -143,8 +143,6 @@ class DozenalWatchView extends WatchUi.WatchFace
         var height;
         var screenWidth = dc.getWidth();
         var clockTime = System.getClockTime();
-        var minuteHandAngle;
-        var hourHandAngle;
         var secondHand;
         var targetDc = null;
 
@@ -174,14 +172,17 @@ class DozenalWatchView extends WatchUi.WatchFace
         //Use white to draw the hour and minute hands
         targetDc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
-        // Draw the hour hand. Convert it to minutes and compute the angle.
-        hourHandAngle = DozenalTime.timeToGrossF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
+        // Draw the gross hand. Convert it to minutes and compute the angle.
+        var grossHandAngle = DozenalTime.timeToGrossF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
+        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, grossHandAngle, 40, 0, 3));
 
-        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, hourHandAngle, 40, 0, 3));
+        // Draw the dozens hand.
+        var dozensHandAngle = DozenalTime.timeToDozensF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
+        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, dozensHandAngle, 70, 0, 2));
 
-        // Draw the minute hand.
-        minuteHandAngle = DozenalTime.timeToDozensF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
-        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 70, 0, 2));
+ 		// Draw the units hand.
+        var unitsHandAngle = DozenalTime.timeToUnitsF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
+        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, unitsHandAngle, 90, 0, 2));
 
         // Draw the arbor in the center of the screen.
         targetDc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_BLACK);
