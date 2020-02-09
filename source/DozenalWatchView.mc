@@ -40,8 +40,7 @@ class DozenalWatchView extends WatchUi.WatchFace
     // Configure the layout of the watchface for this device
     function onLayout(dc) {
 
-        // Load the custom font we use for drawing the 3, 6, 9, and 12 on the watchface.
-        font = Graphics.FONT_MEDIUM; // WatchUi.loadResource(Rez.Fonts.id_font_black_diamond);
+        font = WatchUi.loadResource(Rez.Fonts.id_font_duodecimal);
 
         // If this device supports BufferedBitmap, allocate the buffers we use for drawing
         if(Toybox.Graphics has :BufferedBitmap) {
@@ -143,7 +142,6 @@ class DozenalWatchView extends WatchUi.WatchFace
         var height;
         var screenWidth = dc.getWidth();
         var clockTime = System.getClockTime();
-        var secondHand;
         var targetDc = null;
 
         // We always want to refresh the full screen when we get a regular onUpdate call.
@@ -214,14 +212,14 @@ class DozenalWatchView extends WatchUi.WatchFace
         drawBackground(dc);
 
         // Draw the battery percentage directly to the main screen.
-        var dataString = (System.getSystemStats().battery + 0.5).toNumber().toString() + "%";
+        var dataString = ""; //(System.getSystemStats().battery + 0.5).toNumber().toString() + "%\n";
 
         // Add dozenal time after battery percent
-        dataString += "\n" + DozenalTime.formatTime(clockTime);
+        dataString += DozenalTime.formatTime(clockTime);
         
         // Also draw the background process data if it is available.
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(width / 2, 5*height/8, Graphics.FONT_TINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, 5*height/8, font, dataString, Graphics.TEXT_JUSTIFY_CENTER);
 
         if( partialUpdatesAllowed ) {
             // If this device supports partial updates and they are currently

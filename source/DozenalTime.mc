@@ -41,9 +41,9 @@ module DozenalTime
 		if (digit < 10) {
             return digit + '0';
         } else if (digit == 10) {
-            return 'X';
+            return '↊';
         } else {
-            return 'E';
+            return '↋';
         }
 	}
 }
