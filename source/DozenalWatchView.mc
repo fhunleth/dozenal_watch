@@ -231,7 +231,7 @@ class DozenalWatchView extends WatchUi.WatchFace
         
         // Also draw the background process data if it is available.
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(width / 2, 3*height/4, Graphics.FONT_TINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, 5*height/8, Graphics.FONT_TINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);
 
         if( partialUpdatesAllowed ) {
             // If this device supports partial updates and they are currently
