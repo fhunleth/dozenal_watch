@@ -43,8 +43,6 @@ class DozenalWatchView extends WatchUi.WatchFace
         // Load the custom font we use for drawing the 3, 6, 9, and 12 on the watchface.
         font = Graphics.FONT_MEDIUM; // WatchUi.loadResource(Rez.Fonts.id_font_black_diamond);
 
-        dndIcon = null;
-
         // If this device supports BufferedBitmap, allocate the buffers we use for drawing
         if(Toybox.Graphics has :BufferedBitmap) {
             // Allocate a full screen size buffer with a palette of only 4 colors to draw
@@ -228,6 +226,9 @@ class DozenalWatchView extends WatchUi.WatchFace
         // Draw the battery percentage directly to the main screen.
         var dataString = (System.getSystemStats().battery + 0.5).toNumber().toString() + "%";
 
+        // Add dozenal time after battery percent
+        dataString += "\n" + DozenalTime.formatTime(clockTime);
+        
         // Also draw the background process data if it is available.
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(width / 2, 3*height/4, Graphics.FONT_TINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);

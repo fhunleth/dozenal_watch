@@ -1,6 +1,4 @@
-using Toybox.System;
-
-class DozenalTime
+module DozenalTime
 {
 	function timeToGross(clockTime) {
         return clockTime.hour / 2;
@@ -11,16 +9,14 @@ class DozenalTime
     }
     
     function timeToUnits(clockTime) {
-    	return (clockTime.min % 10) * 60 / 50 + clockTime.sec / 50;
+    	return ((clockTime.min % 10) * 60 + clockTime.sec) / 50;
     }
     
     function timeToEdo(clockTime) {
-    	return (clockTime.sec % 50) * 50 / 12;
+    	return (((clockTime.min % 10) *60 + clockTime.sec) % 50) * 12 / 50;
 	}
 	
-	function getDozenalTime() {
-        var clockTime = System.getClockTime();
-
+	function formatTime(clockTime) {
 		var gro = toDozenalDigit(timeToGross(clockTime));
 		var doe = toDozenalDigit(timeToDozens(clockTime));
 		var units = toDozenalDigit(timeToUnits(clockTime));
@@ -38,6 +34,4 @@ class DozenalTime
             return 'E';
         }
 	}
-
-
 }
