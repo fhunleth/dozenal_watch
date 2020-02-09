@@ -4,10 +4,18 @@ module DozenalTime
         return clockTime.hour / 2;
     }
     
+    function timeToGrossF(clockTime) {
+        return clockTime.hour / 2.0 + clockTime.min / 120.0;
+    }
+    
     function timeToDozens(clockTime) {
     	return (clockTime.hour % 2) * 6 + (clockTime.min / 10);
     }
-    
+
+    function timeToDozensF(clockTime) {
+    	return (clockTime.hour % 2) * 6 + (clockTime.min / 10.0);
+    } 
+       
     function timeToUnits(clockTime) {
     	return ((clockTime.min % 10) * 60 + clockTime.sec) / 50;
     }

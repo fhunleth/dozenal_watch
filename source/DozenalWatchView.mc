@@ -168,30 +168,19 @@ class DozenalWatchView extends WatchUi.WatchFace
         targetDc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
         targetDc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
 
-        // Draw a grey triangle over the upper right half of the screen.
-        targetDc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_DK_GRAY);
-        targetDc.fillPolygon([[0, 0], [targetDc.getWidth(), 0], [targetDc.getWidth(), targetDc.getHeight()], [0, 0]]);
-
         // Draw the tick marks around the edges of the screen
         drawHashMarks(targetDc);
-
-        // Draw the do-not-disturb icon if we support it and the setting is enabled
-        if (null != dndIcon && System.getDeviceSettings().doNotDisturb) {
-            targetDc.drawBitmap( width * 0.75, height / 2 - 15, dndIcon);
-        }
 
         //Use white to draw the hour and minute hands
         targetDc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
         // Draw the hour hand. Convert it to minutes and compute the angle.
-        hourHandAngle = (((clockTime.hour % 12) * 60) + clockTime.min);
-        hourHandAngle = hourHandAngle / (12 * 60.0);
-        hourHandAngle = hourHandAngle * Math.PI * 2;
+        hourHandAngle = DozenalTime.timeToGrossF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
 
         targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, hourHandAngle, 40, 0, 3));
 
         // Draw the minute hand.
-        minuteHandAngle = (clockTime.min / 60.0) * Math.PI * 2;
+        minuteHandAngle = DozenalTime.timeToDozensF(clockTime) * 2.0 * Math.PI / 12 + Math.PI;
         targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 70, 0, 2));
 
         // Draw the arbor in the center of the screen.
@@ -202,10 +191,10 @@ class DozenalWatchView extends WatchUi.WatchFace
 
         // Draw the 3, 6, 9, and 12 hour labels.
         targetDc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        targetDc.drawText((width / 2), 2, font, "12", Graphics.TEXT_JUSTIFY_CENTER);
-        targetDc.drawText(width - 2, (height / 2) - 15, font, "3", Graphics.TEXT_JUSTIFY_RIGHT);
-        targetDc.drawText(width / 2, height - 30, font, "6", Graphics.TEXT_JUSTIFY_CENTER);
-        targetDc.drawText(2, (height / 2) - 15, font, "9", Graphics.TEXT_JUSTIFY_LEFT);
+        targetDc.drawText((width / 2), 2, font, "6", Graphics.TEXT_JUSTIFY_CENTER);
+        targetDc.drawText(width - 2, (height / 2) - 15, font, "9", Graphics.TEXT_JUSTIFY_RIGHT);
+        targetDc.drawText(width / 2, height - 30, font, "0", Graphics.TEXT_JUSTIFY_CENTER);
+        targetDc.drawText(2, (height / 2) - 15, font, "3", Graphics.TEXT_JUSTIFY_LEFT);
 
         // If we have an offscreen buffer that we are using for the date string,
         // Draw the date into it. If we do not, the date will get drawn every update
