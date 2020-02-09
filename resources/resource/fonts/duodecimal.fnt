@@ -13,7 +13,7 @@ char id=55   x=98    y=0     width=12    height=18    xoffset=1     yoffset=6   
 char id=56   x=111   y=0     width=12    height=18    xoffset=1     yoffset=6     xadvance=14    page=0  chnl=15
 char id=57   x=57    y=0     width=13    height=18    xoffset=0     yoffset=6     xadvance=14    page=0  chnl=15
 char id=59   x=159   y=0     width=6     height=16    xoffset=1     yoffset=12    xadvance=8     page=0  chnl=15
-char id=8586 x=71    y=0     width=13    height=18    xoffset=1     yoffset=6     xadvance=14    page=0  chnl=15
-char id=8587 x=124   y=0     width=12    height=18    xoffset=1     yoffset=6     xadvance=14    page=0  chnl=15
+char id=88   x=71    y=0     width=13    height=18    xoffset=1     yoffset=6     xadvance=14    page=0  chnl=15
+char id=69   x=124   y=0     width=12    height=18    xoffset=1     yoffset=6     xadvance=14    page=0  chnl=15
 kernings count=1
-kerning first=49  second=49  amount=-1  
+kerning first=49  second=49  amount=-1

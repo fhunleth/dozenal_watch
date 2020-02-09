@@ -1,5 +1,5 @@
 <resources>
     <fonts>
-        <font id="id_font_duodecimal" filename="fonts/duodecimal.fnt" antialias="true" filter="0123456789↊↋;"/>
+        <font id="id_font_duodecimal" filename="fonts/duodecimal.fnt" antialias="true" filter="0123456789XE;"/>
     </fonts>
 </resources>
