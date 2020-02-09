@@ -34,7 +34,7 @@ module DozenalTime
 		var units = toDozenalDigit(timeToUnits(clockTime));
 		var edo = toDozenalDigit(timeToEdo(clockTime));
 	
-		return gro + doe + units + "." + edo;	
+		return gro + doe + units + ";" + edo;	
 	}
 	
 	function toDozenalDigit(digit) {
